@@ -20,7 +20,7 @@ class ReceiptGeneratorTest {
         var apple = productDb.getProduct("Apple");
         var expectedTotalPrice = milk.price().multiply(BigDecimal.valueOf(2)).add(bread.price()).add(apple.price());
 
-        cart.addProduct(milk);
+        cart.addProduct(milk);;
         cart.addProduct(milk);
         cart.addProduct(bread);
         cart.addProduct(apple);
