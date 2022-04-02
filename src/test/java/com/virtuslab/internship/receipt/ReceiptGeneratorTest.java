@@ -1,10 +1,13 @@
 package com.virtuslab.internship.receipt;
 
 import com.virtuslab.internship.basket.Basket;
+import com.virtuslab.internship.discount.FifteenPercentDiscount;
+import com.virtuslab.internship.discount.TenPercentDiscount;
 import com.virtuslab.internship.product.ProductDb;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,12 +23,12 @@ class ReceiptGeneratorTest {
         var apple = productDb.getProduct("Apple");
         var expectedTotalPrice = milk.price().multiply(BigDecimal.valueOf(2)).add(bread.price()).add(apple.price());
 
-        cart.addProduct(milk);;
+        cart.addProduct(milk);
         cart.addProduct(milk);
         cart.addProduct(bread);
         cart.addProduct(apple);
 
-        var receiptGenerator = new ReceiptGenerator();
+        var receiptGenerator = new ReceiptGenerator(Set.of());
 
         // When
         var receipt = receiptGenerator.generate(cart);
@@ -37,4 +40,32 @@ class ReceiptGeneratorTest {
         assertEquals(0, receipt.discounts().size());
     }
 
+    @Test
+    void givenBasketWithDiscount() {
+        // Given
+        var productDb = new ProductDb();
+        var cart = new Basket();
+        var cereals = productDb.getProduct("Cereals");
+        var bread = productDb.getProduct("Bread");
+        var steak = productDb.getProduct("Steak");
+        var expectedTotalPriceAfterFirstDiscount = bread.price().multiply(BigDecimal.valueOf(2)).add(cereals.price()).add(steak.price()).multiply(BigDecimal.valueOf(0.85));
+        var expectedTotalPriceAfterSecondDiscount = expectedTotalPriceAfterFirstDiscount.multiply(BigDecimal.valueOf(0.9));
+
+
+        cart.addProduct(cereals);
+        cart.addProduct(bread);
+        cart.addProduct(bread);
+        cart.addProduct(steak);
+
+        var receiptGenerator = new ReceiptGenerator(Set.of(new FifteenPercentDiscount(), new TenPercentDiscount()));
+
+        // When
+        var receipt = receiptGenerator.generate(cart);
+
+        // Then
+        assertNotNull(receipt);
+        assertEquals(3, receipt.entries().size());
+        assertEquals(expectedTotalPriceAfterSecondDiscount, receipt.totalPrice());
+        assertEquals(2, receipt.discounts().size());
+    }
 }
