@@ -1,4 +1,4 @@
-package com.virtuslab.internship.receipt;
+package com.virtuslab.internship.Products.example.receipt;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

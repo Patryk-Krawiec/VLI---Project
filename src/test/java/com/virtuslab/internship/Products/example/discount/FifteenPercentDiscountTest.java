@@ -1,8 +1,8 @@
-package com.virtuslab.internship.discount;
+package com.virtuslab.internship.Products.example.discount;
 
-import com.virtuslab.internship.product.ProductDb;
-import com.virtuslab.internship.receipt.Receipt;
-import com.virtuslab.internship.receipt.ReceiptEntry;
+import com.virtuslab.internship.Products.example.product.ProductDb;
+import com.virtuslab.internship.Products.example.receipt.Receipt;
+import com.virtuslab.internship.Products.example.receipt.ReceiptEntry;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

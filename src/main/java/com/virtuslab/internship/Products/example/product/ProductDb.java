@@ -1,4 +1,4 @@
-package com.virtuslab.internship.product;
+package com.virtuslab.internship.Products.example.product;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -31,6 +31,6 @@ public class ProductDb {
         return products.stream()
                 .filter(product -> productName.equals(product.name()))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 }

@@ -1,15 +1,16 @@
-package com.virtuslab.internship.receipt;
+package com.virtuslab.internship.Products.example.receipt;
 
-import com.virtuslab.internship.basket.Basket;
-import com.virtuslab.internship.discount.FifteenPercentDiscount;
-import com.virtuslab.internship.discount.TenPercentDiscount;
-import com.virtuslab.internship.product.ProductDb;
+import com.virtuslab.internship.Products.example.basket.Basket;
+import com.virtuslab.internship.Products.example.discount.FifteenPercentDiscount;
+import com.virtuslab.internship.Products.example.discount.TenPercentDiscount;
+import com.virtuslab.internship.Products.example.product.ProductDb;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ReceiptGeneratorTest {
 

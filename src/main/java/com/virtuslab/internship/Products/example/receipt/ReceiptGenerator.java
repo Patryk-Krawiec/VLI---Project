@@ -1,8 +1,8 @@
-package com.virtuslab.internship.receipt;
+package com.virtuslab.internship.Products.example.receipt;
 
-import com.virtuslab.internship.basket.Basket;
-import com.virtuslab.internship.discount.DiscountPolicy;
-import com.virtuslab.internship.product.Product;
+import com.virtuslab.internship.Products.example.basket.Basket;
+import com.virtuslab.internship.Products.example.discount.DiscountPolicy;
+import com.virtuslab.internship.Products.example.product.Product;
 
 import java.util.*;
 import java.util.function.Function;
@@ -19,9 +19,9 @@ public class ReceiptGenerator {
     public Receipt generate(Basket basket) {
         List<ReceiptEntry> receiptEntries = new ArrayList<>();
         var getprodlist = basket.getProducts();
-        Map<Product, Long> collect = getprodlist.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        collect.forEach((product, aLong) -> {
-            receiptEntries.add(new ReceiptEntry(product, aLong.intValue()));
+        Map<Product, Long> collect = getprodlist.stream().filter(Objects::nonNull).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        collect.forEach((product, quantity) -> {
+            receiptEntries.add(new ReceiptEntry(product, quantity.intValue()));
         });
         Receipt receipt = new Receipt(receiptEntries);
         List<DiscountPolicy> activeDiscount = discounts.stream()

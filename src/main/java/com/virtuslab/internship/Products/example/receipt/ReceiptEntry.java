@@ -1,6 +1,6 @@
-package com.virtuslab.internship.receipt;
+package com.virtuslab.internship.Products.example.receipt;
 
-import com.virtuslab.internship.product.Product;
+import com.virtuslab.internship.Products.example.product.Product;
 
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;

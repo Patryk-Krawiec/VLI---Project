@@ -1,6 +1,6 @@
-package com.virtuslab.internship.discount;
+package com.virtuslab.internship.Products.example.discount;
 
-import com.virtuslab.internship.receipt.Receipt;
+import com.virtuslab.internship.Products.example.receipt.Receipt;
 
 import java.math.BigDecimal;
 
